@@ -333,3 +333,9 @@ def gen_geometry_collection():
     return 'GEOMETRYCOLLECTION ({})'.format(
         gen_point(),
     )
+
+
+def gen_search_vector():
+    return "SELECT to_tsvector('public.simple_conf', {});".format(
+        gen_text()
+    )

@@ -57,6 +57,11 @@ except ImportError:
     CIEmailField = None
     CITextField = None
 
+try:
+    from django.contrib.postgres.search import SearchVectorField
+except ImportError:
+    SearchVectorField = None
+
 from . import random_gen
 
 default_mapping = {
@@ -112,6 +117,9 @@ if CIEmailField:
     default_mapping[CIEmailField] = random_gen.gen_email
 if CITextField:
     default_mapping[CITextField] = random_gen.gen_text
+if SearchVectorField:
+    default_mapping[SearchVectorField] = random_gen.gen_search_vector
+
 
 # Add GIS fields
 default_mapping.update(default_gis_mapping)
